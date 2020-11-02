@@ -28,9 +28,9 @@ trait ActionsTrait
     {
         if (array_key_exists($method, $this->actions))
         {
-            if (is_array($this->actions))
+            if (is_array($this->actions[$method]))
             {
-                $action = call_user_func_array([$this, 'createAction'], $this->actions);
+                $action = call_user_func_array([$this, 'createAction'], $this->actions[$method]);
             }
             else
             {
@@ -54,6 +54,10 @@ trait ActionsTrait
 
     protected function createAction($actionClass, ...$params) : ActionInterface
     {
+        var_dump($actionClass);
+
+        die;
+
         $action = new $actionClass($this, ...$params);
 
         $action->initController($this->request, $this->response, $this->logger);
