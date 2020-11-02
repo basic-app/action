@@ -54,10 +54,6 @@ trait ActionsTrait
 
     protected function createAction($actionClass, ...$params) : ActionInterface
     {
-        var_dump($actionClass);
-
-        die;
-
         $action = new $actionClass($this, ...$params);
 
         $action->initController($this->request, $this->response, $this->logger);
