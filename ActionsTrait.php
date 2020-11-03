@@ -41,8 +41,6 @@ trait ActionsTrait
 
             if ($return instanceof Closure)
             {
-                $return = $return->bindTo($this, get_class($this));
-
                 return $return($method, $params);
             }
 
