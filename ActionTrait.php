@@ -9,7 +9,7 @@ namespace BasicApp\Action;
 use Closure;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-trait ActionsTrait
+trait ActionTrait
 {
 
     protected $actions = [];
