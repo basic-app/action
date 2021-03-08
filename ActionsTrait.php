@@ -9,10 +9,12 @@ namespace BasicApp\Action;
 use Closure;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-trait ActionTrait
+trait ActionsTrait
 {
 
-    protected $actions = [];
+    // protected $defaultActions = [];
+    
+    // protected $actions = [];
 
     public function _remap($method, ...$params)
     {
@@ -24,23 +26,37 @@ trait ActionTrait
         return $this->remapAction($method, ...$params);
     }
 
+    protected function getActions() : array
+    {
+        return array_merge(
+            property_exists($this, 'defaultActions') ? $this->defaultActions : [], 
+            property_exists($this, 'actions') ? $this->actions : []
+        );
+    }
+
     protected function remapAction($method, ...$params)
     {
-        if (array_key_exists($method, $this->actions))
+        $actions = $this->getActions();
+
+        if (array_key_exists($method, $actions) && $actions[$method])
         {
-            if (is_array($this->actions[$method]))
+            if (is_array($actions[$method]))
             {
-                $action = call_user_func_array([$this, 'createAction'], $this->actions[$method]);
+                $action = call_user_func_array([$this, 'createAction'], $actions[$method]);
             }
             else
             {
-                $action = $this->createAction($this->actions);
+                $action = $this->createAction($actions[$method]);
             }
 
             $return = $action->_remap($method, ...$params);
 
             if ($return instanceof Closure)
             {
+                $return = $return->bindTo($this, $this);
+
+                assert($return ? true : false, '$return::bindTo');
+
                 return $return($method, $params);
             }
 
