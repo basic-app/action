@@ -57,7 +57,7 @@ trait ActionsTrait
 
                 assert($return ? true : false, '$return::bindTo');
 
-                return $return($method, $params);
+                return $return($method, ...$params);
             }
 
             return $return;
