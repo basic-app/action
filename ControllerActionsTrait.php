@@ -10,7 +10,7 @@ use Closure;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use BasicApp\Action\ActionInterface;
 
-trait ActionControllerTrait
+trait ControllerActionsTrait
 {
 
     protected $actions = [];
