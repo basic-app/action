@@ -8,7 +8,7 @@ namespace BasicApp\Action;
 
 use CodeIgniter\Controller;
 
-abstract class BaseAction extends Controller implements ActionInterface
+abstract class BaseAction implements ActionInterface
 {
 
     protected $controller;
