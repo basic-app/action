@@ -7,6 +7,7 @@
 namespace BasicApp\Action;
 
 use CodeIgniter\Controller;
+use Webmozart\Assert\Assert;
 
 abstract class BaseAction implements ActionInterface
 {
@@ -21,14 +22,9 @@ abstract class BaseAction implements ActionInterface
 
         foreach($params as $key => $value)
         {
-            if (property_exists($this, $key))
-            {
-                $this->$key = $value;
-            }
-            else
-            {
-                throw new Exception('Unknown property: ' . $key);
-            }
+            Assert::propertyExists($this, $key);
+
+            $this->$key = $value;
         }
     }
 

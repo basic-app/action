@@ -5,5 +5,8 @@
         "psr-4": {
             "BasicApp\\Action\\": ""
         }
+    },
+    "require": {
+        "webmozart/assert": "*"
     }
 }
