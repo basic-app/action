@@ -9,6 +9,6 @@ namespace BasicApp\Action;
 interface ActionInterface
 {
 
-    public function _remap($method, ...$params);
+    public function run($method, ...$params);
 
 }
