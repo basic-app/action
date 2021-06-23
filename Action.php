@@ -6,6 +6,9 @@
  */
 namespace BasicApp\Action;
 
-class Action extends BaseAction
+abstract class Action extends BaseAction
 {
+
+    abstract public function run($method, ...$params);
+
 }
