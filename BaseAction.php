@@ -29,7 +29,7 @@ abstract class BaseAction implements ActionInterface
         }
     }
 
-    public function execute(string $method = null, array $params = [])
+    public function execute(string $method = null, ...$params)
     {
         $return = $this->run($method, ...$params);
 
