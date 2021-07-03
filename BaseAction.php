@@ -29,22 +29,4 @@ abstract class BaseAction implements ActionInterface
         }
     }
 
-    public function execute(string $method = null, ...$params)
-    {
-        $return = $this->run($method, ...$params);
-
-        if ($return instanceof Closure)
-        {
-            Assert::notEmpty($this->controller, 'Controller is required.');
-
-            $return = $return->bindTo($this->controller, $this->controller);
-
-            Assert::notEmpty($return, 'Bind failed.');
-
-            return $return($method, ...$params);
-        }
-
-        return $return;
-    }
-
 }
