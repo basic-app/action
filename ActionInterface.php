@@ -6,9 +6,25 @@
  */
 namespace BasicApp\Action;
 
+use Psr\Log\LoggerInterface;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+
 interface ActionInterface
 {
 
-    public function run($method, ...$params);
+    public function initialize(?string $method = null);
+
+    public function execute(...$params);
+
+    public function run(string $method, ...$params);
+
+    public function setLogger(LoggerInterface $logger);
+
+    public function setRequest(RequestInterface $request);
+
+    public function setResponse(ResponseInterface $response);
+
+    public function isMethod(?string $method) : bool;
 
 }
