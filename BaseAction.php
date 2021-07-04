@@ -67,18 +67,18 @@ abstract class BaseAction implements ActionInterface
 
     public function setLogger(LoggerInterface $logger)
     {
-        $this->logger = $this->logger;
+        $this->logger = $logger;
     }
 
     public function setRequest(RequestInterface $request)
     {
-        $this->request = $this->request;
+        $this->request = $request;
     }
 
     public function setResponse(ResponseInterface $response)
     {
-        $this->response = $this->response;
-    }    
+        $this->response = $response;
+    }
 
     public function execute(...$params)
     {
