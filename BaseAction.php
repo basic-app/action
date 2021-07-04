@@ -51,7 +51,7 @@ abstract class BaseAction implements ActionInterface
      */
     protected $logger;
 
-    abstract public function run(string $method, ...$params);
+    abstract public function run(...$params);
 
     public function __construct(Controller $controller, array $params = [])
     {
@@ -86,7 +86,9 @@ abstract class BaseAction implements ActionInterface
 
         if ($return instanceof Closure)
         {
-            Assert::notEmpty($return->bindTo($this->controller, $this->controller), lang('Bind failed.'));
+            $return = $return->bindTo($this->controller, $this->controller);
+
+            Assert::notEmpty($return, lang('Bind failed.'));
 
             return $return(...$params);
         }

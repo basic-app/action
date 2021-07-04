@@ -17,7 +17,7 @@ interface ActionInterface
 
     public function execute(...$params);
 
-    public function run(string $method, ...$params);
+    public function run(...$params);
 
     public function setLogger(LoggerInterface $logger);
 
