@@ -24,13 +24,6 @@ abstract class BaseAction implements ActionInterface
     protected $controller;
 
     /**
-     * Method name.
-     *
-     * @var string
-     */
-    protected $method;
-
-    /**
      * Instance of the main Request object.
      *
      * @var RequestInterface
@@ -59,7 +52,9 @@ abstract class BaseAction implements ActionInterface
 
         foreach($params as $key => $value)
         {
-            Assert::propertyExists($this, $key, lang('Property does not exist: "{property}".', ['property' => $key]));
+            $error = lang('Property does not exist: {property}', ['property' => $key]);
+
+            Assert::propertyExists($this, $key, $error);
 
             $this->$key = $value;
         }
@@ -96,14 +91,8 @@ abstract class BaseAction implements ActionInterface
         return $return;
     }
 
-    public function initialize(?string $method = null)
+    public function initialize()
     {
-        $this->method = $method;
-    }
-
-    public function isMethod(?string $method) : bool
-    {
-        return $this->method == $method;
     }
 
 }   

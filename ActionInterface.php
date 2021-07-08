@@ -13,7 +13,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 interface ActionInterface
 {
 
-    public function initialize(?string $method = null);
+    public function initialize();
 
     public function execute(...$params);
 
@@ -24,7 +24,5 @@ interface ActionInterface
     public function setRequest(RequestInterface $request);
 
     public function setResponse(ResponseInterface $response);
-
-    public function isMethod(?string $method) : bool;
 
 }
